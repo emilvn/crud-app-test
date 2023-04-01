@@ -1,0 +1,83 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: darkcyan;
+    width: 100%;
+    text-align: center;
+}
+
+.form-grid{
+    display: grid;
+    margin-top: 7.5em;
+    padding-bottom: 2.5em;
+    grid-template-columns: 2.5fr 1fr 2.5fr;
+    border-bottom: 2px solid darkcyan;
+}
+
+.form-grid form{
+    grid-column: 2/3;
+    background-color: darkgrey;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.form-grid form div{
+    margin: 1em;
+}
+.form-grid form div:last-child{
+    text-align: center;
+    margin: 1em;
+}
+.character-grid{
+    margin: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+}
+@media (min-width: 600px) {
+    .character-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 900px) {
+    .character-grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+    .character-grid{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 1500px) {
+    .character-grid{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media (min-width: 1800px) {
+    .character-grid{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+@media (min-width: 2100px) {
+    .character-grid{
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+.character-grid article{
+    background-color: darkgrey;
+    border-radius: 1em;
+    padding: 1em;
+}
