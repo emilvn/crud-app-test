@@ -1,4 +1,4 @@
-const Character = require("../models/Character");
+import Character from "../models/Character";
 
 // Show the list of Characters
 async function indexCharacter(req, res, next){
