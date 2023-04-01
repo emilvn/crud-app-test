@@ -1,6 +1,10 @@
 "use strict";
 window.addEventListener("load", main);
 
-function main(){
+async function main(){
+    
+}
+
+async function fetchData() {
     
 }
