@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emilvn/crud-app-test.git"
+    "url": "git+https://github.com/emilvn/crud-app-test.git#main"
   },
-  "author": "",
+  "author": "Emil Vennervald Nielsen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/emilvn/crud-app-test/issues"
   },
-  "homepage": "https://github.com/emilvn/crud-app-test#readme",
+  "homepage": "https://github.com/emilvn/crud-app-test/tree/main#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.18.2",

@@ -3,7 +3,7 @@ const mongoose      = require("mongoose");
 const morgan        = require("morgan");
 const bodyParser    = require("body-parser");
 
-const EmployeeRoute = require("./routes/employee");
+const CharacterRoute = require("./routes/character");
 
 mongoose.connect("mongodb://127.0.0.1:27017", {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection;
@@ -28,4 +28,4 @@ app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`)
 });
 
-app.use("/api/employee", EmployeeRoute);
+app.use("/api/character", CharacterRoute);
