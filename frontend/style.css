@@ -81,3 +81,15 @@ header{
     border-radius: 1em;
     padding: 1em;
 }
+
+.character-grid article div{
+    text-align: center;
+}
+
+.hidden{
+    display: none;
+}
+
+.value-error{
+    color: darkred;
+}
