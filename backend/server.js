@@ -22,7 +22,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-/* ========== Set root for frontend ========== */
+/* ========== Set root url to frontend folder ========== */
 app.use(express.static("../frontend"));
 
 /* ========== PORT is specified port if set or 3000 by default ========== */
