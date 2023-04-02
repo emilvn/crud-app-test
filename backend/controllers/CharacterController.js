@@ -3,7 +3,7 @@ const Character = require("../models/Character");
 /* ========== show list of characters ========== */
 async function indexCharacter(req, res, next){
     try{
-        const characters = await Character.find();
+        const characters = await Character.find({});
         res.json({response: characters});
     }
     catch(err){
@@ -63,7 +63,7 @@ async function deleteCharacter(req, res, next){
     let characterID = req.body.characterID;
     
     try{
-        await Character.findOneAndRemove(characterID);
+        await Character.findByIdAndDelete(characterID);
         res.json({message: "Character deleted Successfully."});
     }
     catch(err){

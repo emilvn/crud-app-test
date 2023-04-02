@@ -7,15 +7,15 @@ const CharacterController = require("../controllers/CharacterController");
 router.get("/", CharacterController.indexCharacter);
 
 /* ========== READ ONE ========== */
-router.post("/show", CharacterController.showCharacter);
+router.post("/show/:characterID", CharacterController.showCharacter);
 
 /* ========== CREATE ========== */
 router.post("/add", CharacterController.addCharacter);
 
 /* ========== UPDATE ========== */
-router.put("/update", CharacterController.updateCharacter);
+router.put("/update/:characterID", CharacterController.updateCharacter);
 
 /* ========== DELETE ========== */
-router.delete("/delete", CharacterController.deleteCharacter);
+router.delete("/delete/:characterID", CharacterController.deleteCharacter);
 
 module.exports = router;

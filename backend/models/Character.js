@@ -3,21 +3,26 @@ const Schema = mongoose.Schema;
 
 const characterSchema= new Schema({
     name:{
-        type: String
+        type: String,
+        required: true
     },
     nickname: {
-        type: String
+        type: String,
+        required: true
     },
     occupation: {
-        type: String
+        type: String,
+        required: true
     },
     image: {
-        type: String
+        type: String,
+        required: true
     },
     age: {
-        type: Number
+        type: Number,
+        required: true
     }
-}, {timestamps: true})
+})
 
 const Character = mongoose.model("Character", characterSchema);
 module.exports = Character;

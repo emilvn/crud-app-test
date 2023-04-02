@@ -137,10 +137,31 @@ async function createCharacter(obj) {
         throw err;
     }
 }
-/* ========== READ ========== */
+/* ========== READ ALL ========== */
 async function getData() {
     try {
         const res = await fetch(DataURL);
+        if (!res.ok) {
+            throw new Error("Response not ok");
+        }
+        const data = (await res.json()).response;
+        console.log(data);
+        return data;
+    }
+    catch (err) {
+        throw err;
+    }
+}
+/* ========== READ ALL ========== */
+async function getSpecificData(charID) {
+    try {
+        const res = await fetch(DataURL + "/show", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                characterID: charID
+            })
+        });
         if (!res.ok) {
             throw new Error("Response not ok");
         }
@@ -162,7 +183,7 @@ async function updateCharacter(charID) {
 /* ========== DELETE ========== */
 async function deleteCharacter(charID) {
     try {
-        const res = await fetch(DataURL + "/delete", {
+        const res = await fetch(DataURL + "/delete" + charID, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
