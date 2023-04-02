@@ -155,6 +155,9 @@ async function getData() {
 /* ========== UPDATE ========== */
 async function updateCharacter(charID) {
     console.log(charID);
+    // To-do: Take user input for changes to character info
+    // To-do: make post request to api/character/update with charID and the updated character info
+    // To-do: update character grid with the new info
 }
 /* ========== DELETE ========== */
 async function deleteCharacter(charID) {
