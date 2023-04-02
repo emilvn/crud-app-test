@@ -1,6 +1,6 @@
 const Character = require("../models/Character");
 
-// Show the list of Characters
+/* ========== show list of characters ========== */
 async function indexCharacter(req, res, next){
     try{
         const characters = await Character.find();
@@ -11,7 +11,7 @@ async function indexCharacter(req, res, next){
     }
 }
 
-//show single character
+/* ========== show single character ========== */
 async function showCharacter(req, res, next){
     let characterID = req.body.characterID;
     try{
@@ -23,7 +23,6 @@ async function showCharacter(req, res, next){
     }
 }
 
-// add character
 async function addCharacter(req, res, next){
     let character = new Character({
         name: req.body.name,
@@ -41,7 +40,6 @@ async function addCharacter(req, res, next){
     }
 }
 
-//update character by id
 async function updateCharacter(req, res, next){
     let characterID = req.body.characterID;
 
@@ -61,7 +59,6 @@ async function updateCharacter(req, res, next){
     }
 }
 
-//delete an character
 async function deleteCharacter(req, res, next){
     let characterID = req.body.characterID;
     

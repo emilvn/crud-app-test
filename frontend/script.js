@@ -7,19 +7,17 @@ function main() {
     document.querySelector("#submit-button").addEventListener("click", formSubmit);
     updateCharacterGrid();
 }
-
+/* ========== Funcs to display characters ========== */
 async function updateCharacterGrid() {
     const characters = await getData(DataURL);
     document.querySelector("#characters").innerHTML = "";
     showAllCharacters(characters);
 }
-
 function showAllCharacters(arr) {
     for (const obj of arr) {
         showCharacter(obj);
     }
 }
-
 function showCharacter(obj) {
     const myHTML = /*html*/`
     <article>
@@ -39,6 +37,7 @@ function showCharacter(obj) {
     document.querySelector("#characters article:last-child div button:last-child").addEventListener("click", () => updateCharacter(obj._id));
 }
 
+/* ========== user input related funcs ========== */
 async function formSubmit() {
     if (validate()) {
         const newChar = {};
@@ -52,7 +51,6 @@ async function formSubmit() {
         document.querySelector("form").reset();
     }
 }
-
 function validate() {
     const charName = document.querySelector("#name").value;
     const charNickname = document.querySelector("#nickname").value;
@@ -116,22 +114,7 @@ function validate() {
 
     return isValid;
 }
-
-async function getData() {
-    try {
-        const res = await fetch(DataURL);
-        if (!res.ok) {
-            throw new Error("Response not ok");
-        }
-        const data = (await res.json()).response;
-        console.log(data);
-        return data;
-    }
-    catch (err) {
-        throw err;
-    }
-}
-
+/* ========== CREATE ========== */
 async function createCharacter(obj) {
     try {
         const res = await fetch(DataURL + "/add", {
@@ -154,11 +137,26 @@ async function createCharacter(obj) {
         throw err;
     }
 }
-
+/* ========== READ ========== */
+async function getData() {
+    try {
+        const res = await fetch(DataURL);
+        if (!res.ok) {
+            throw new Error("Response not ok");
+        }
+        const data = (await res.json()).response;
+        console.log(data);
+        return data;
+    }
+    catch (err) {
+        throw err;
+    }
+}
+/* ========== UPDATE ========== */
 async function updateCharacter(charID) {
     console.log(charID);
 }
-
+/* ========== DELETE ========== */
 async function deleteCharacter(charID) {
     try {
         const res = await fetch(DataURL + "/delete", {
