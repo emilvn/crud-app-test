@@ -82,8 +82,19 @@ header{
     padding: 1em;
 }
 
+.character-grid article img{
+    width: 100%;
+}
+
 .character-grid article div{
     text-align: center;
+}
+
+footer{
+    text-align: center;
+    background-color: darkcyan;
+    color: white;
+    font-size: 0.75em;
 }
 
 .hidden{
