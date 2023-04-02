@@ -145,7 +145,6 @@ async function getData() {
             throw new Error("Response not ok");
         }
         const data = (await res.json()).response;
-        console.log(data);
         return data;
     }
     catch (err) {
@@ -155,7 +154,7 @@ async function getData() {
 /* ========== READ ALL ========== */
 async function getSpecificData(charID) {
     try {
-        const res = await fetch(DataURL + "/show", {
+        const res = await fetch(DataURL + "/show/" + charID, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -166,7 +165,6 @@ async function getSpecificData(charID) {
             throw new Error("Response not ok");
         }
         const data = (await res.json()).response;
-        console.log(data);
         return data;
     }
     catch (err) {
@@ -183,7 +181,7 @@ async function updateCharacter(charID) {
 /* ========== DELETE ========== */
 async function deleteCharacter(charID) {
     try {
-        const res = await fetch(DataURL + "/delete" + charID, {
+        const res = await fetch(DataURL + "/delete/" + charID, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -194,7 +192,7 @@ async function deleteCharacter(charID) {
             throw new Error("Response not ok");
         }
         console.log("Character deleted");
-        updateCharacterGrid();
+        // updateCharacterGrid();
     }
     catch (err) {
         throw err;
