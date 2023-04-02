@@ -13,9 +13,9 @@ router.post("/show", CharacterController.showCharacter);
 router.post("/add", CharacterController.addCharacter);
 
 /* ========== UPDATE ========== */
-router.post("/update", CharacterController.updateCharacter);
+router.put("/update", CharacterController.updateCharacter);
 
 /* ========== DELETE ========== */
-router.post("/delete", CharacterController.deleteCharacter);
+router.delete("/delete", CharacterController.deleteCharacter);
 
 module.exports = router;

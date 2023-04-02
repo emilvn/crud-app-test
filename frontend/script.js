@@ -156,14 +156,14 @@ async function getData() {
 async function updateCharacter(charID) {
     console.log(charID);
     // To-do: Take user input for changes to character info
-    // To-do: make post request to api/character/update with charID and the updated character info
+    // To-do: make put request to api/character/update with charID and the updated character info
     // To-do: update character grid with the new info
 }
 /* ========== DELETE ========== */
 async function deleteCharacter(charID) {
     try {
         const res = await fetch(DataURL + "/delete", {
-            method: "POST",
+            method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 characterID: charID
