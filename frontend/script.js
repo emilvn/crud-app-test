@@ -4,7 +4,7 @@ window.addEventListener("load", main);
 const DataURL = "/api/character";
 
 function main() {
-    document.querySelector("#submit-button").addEventListener("click", formSubmit);
+    document.querySelector("#create-button").addEventListener("click", ()=> formSubmit("create"));
     updateCharacterGrid();
 }
 /* ========== Funcs to display characters ========== */
@@ -13,19 +13,19 @@ async function updateCharacterGrid() {
     document.querySelector("#characters").innerHTML = "";
     showAllCharacters(characters);
 }
-function showAllCharacters(arr) {
-    for (const obj of arr) {
-        showCharacter(obj);
+function showAllCharacters(characters) {
+    for (const character of characters) {
+        showCharacter(character);
     }
 }
-function showCharacter(obj) {
+function showCharacter(character) {
     const myHTML = /*html*/`
     <article>
-        <img src="${obj.image}">
-        <h2>${obj.name}</h2>
-        <p>a.k.a "${obj.nickname}"</p>
-        <p>${obj.occupation}</p>
-        <p>${obj.age} years old</p>
+        <img src="${character.image}">
+        <h2>${character.name}</h2>
+        <p>a.k.a "${character.nickname}"</p>
+        <p>${character.occupation}</p>
+        <p>${character.age} years old</p>
         <div>
             <button>Delete</button>
             <button>Edit</button>
@@ -33,36 +33,60 @@ function showCharacter(obj) {
     </article>
     `;
     document.querySelector("#characters").insertAdjacentHTML("beforeend", myHTML);
-    document.querySelector("#characters article:last-child div button:first-child").addEventListener("click", () => deleteCharacter(obj._id));
-    document.querySelector("#characters article:last-child div button:last-child").addEventListener("click", () => updateCharacter(obj._id));
+    document.querySelector("#characters article:last-child div button:first-child").addEventListener("click", () => deleteCharacter(character._id));
+    document.querySelector("#characters article:last-child div button:last-child").addEventListener("click", () => showUpdateDialog(character));
 }
+
+function showUpdateDialog(character){
+    const form = document.querySelector("#form-update");
+    form.name.value = character.name;
+    form.nickname.value = character.nickname;
+    form.occupation.value = character.occupation;
+    form.image.value = character.image;
+    form.age.value = character.age;
+    form.querySelector("#update-button").addEventListener("click", ()=> {
+        if(validate("update")){
+            const newChar = {
+                id: character._id,
+                name: form.name.value,
+                nickname: form.nickname.value,
+                occupation: form.occupation.value,
+                image: form.image.value,
+                age: form.age.value,};
+            updateCharacter(newChar)
+        }
+    });
+    form.parentElement.showModal();
+}
+
 
 /* ========== user input related funcs ========== */
-async function formSubmit() {
-    if (validate()) {
+async function formSubmit(mode) {
+    //mode is create or update
+    if (validate(mode)) {
         const newChar = {};
-        newChar.name = document.querySelector("#name").value;
-        newChar.nickname = document.querySelector("#nickname").value;
-        newChar.occupation = document.querySelector("#occupation").value;
-        newChar.image = document.querySelector("#image").value;
-        newChar.age = Number(document.querySelector("#age").value);
-        await createCharacter(newChar);
-        updateCharacterGrid();
-        document.querySelector("form").reset();
+        newChar.name = document.querySelector(`#name-${mode}`).value;
+        newChar.nickname = document.querySelector(`#nickname-${mode}`).value;
+        newChar.occupation = document.querySelector(`#occupation-${mode}`).value;
+        newChar.image = document.querySelector(`#image-${mode}`).value;
+        newChar.age = Number(document.querySelector(`#age-${mode}`).value);
+        if(mode === "create") await createCharacter(newChar);
+        document.querySelector(`#form-${mode}`).reset();
     }
 }
-function validate() {
-    const charName = document.querySelector("#name").value;
-    const charNickname = document.querySelector("#nickname").value;
-    const charOccupation = document.querySelector("#occupation").value;
-    const charImage = document.querySelector("#image").value;
-    const charAge = document.querySelector("#age").value;
+function validate(mode) {
+    //mode is create or update
+    const charName = document.querySelector(`#name-${mode}`).value;
+    const charNickname = document.querySelector(`#nickname-${mode}`).value;
+    const charOccupation = document.querySelector(`#occupation-${mode}`).value;
+    const charImage = document.querySelector(`#image-${mode}`).value;
+    const charAge = document.querySelector(`#age-${mode}`).value;
 
-    const nameValueError = document.querySelector("#nameValueError");
-    const nicknameValueError = document.querySelector("#nicknameValueError");
-    const occupationValueError = document.querySelector("#occupationValueError");
-    const imageValueError = document.querySelector("#imageValueError");
-    const ageValueError = document.querySelector("#ageValueError");
+    const nameValueError = document.querySelector(`#form-${mode} .nameValueError`);
+    const nicknameValueError = document.querySelector(`#form-${mode} .nicknameValueError`);
+    const occupationValueError = document.querySelector(`#form-${mode} .occupationValueError`);
+    const imageValueError = document.querySelector(`#form-${mode} .imageValueError`);
+    const ageValueError = document.querySelector(`#form-${mode} .ageValueError`);
 
     const urlRegEx = /^https?:\/\/.+\..+\/.+\.(png|jpg|gif)$/;
     let isValid = true;
@@ -115,23 +139,26 @@ function validate() {
     return isValid;
 }
 /* ========== CREATE ========== */
-async function createCharacter(obj) {
+async function createCharacter(character) {
     try {
         const res = await fetch(DataURL + "/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                name: obj.name,
-                nickname: obj.nickname,
-                occupation: obj.occupation,
-                image: obj.image,
-                age: obj.age
+                name: character.name,
+                nickname: character.nickname,
+                occupation: character.occupation,
+                image: character.image,
+                age: character.age
             })
         });
-        if (!res.ok) {
+        if (res.ok) {
+            console.log("Character added.");
+            updateCharacterGrid();
+        }
+        else{
             throw new Error("Response not ok");
         }
-        console.log("Character added.")
     }
     catch (err) {
         throw err;
@@ -172,11 +199,33 @@ async function getSpecificData(charID) {
     }
 }
 /* ========== UPDATE ========== */
-async function updateCharacter(charID) {
-    console.log(charID);
-    // To-do: Take user input for changes to character info
-    // To-do: make put request to api/character/update with charID and the updated character info
-    // To-do: update character grid with the new info
+async function updateCharacter(character) {
+    try {
+        const res = await fetch(DataURL + "/update/" + character._id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                characterID: character.id,
+                name: character.name,
+                nickname: character.nickname,
+                occupation: character.occupation,
+                image: character.image,
+                age: character.age
+            })
+        });
+        if (res.ok) {
+            console.log("Character updated.");
+            console.log(character);
+            document.querySelector("#form-update").parentElement.close();
+            updateCharacterGrid();
+        }
+        else{
+            throw new Error("Response not ok");
+        }
+    }
+    catch (err) {
+        throw err;
+    }
 }
 /* ========== DELETE ========== */
 async function deleteCharacter(charID) {
@@ -188,11 +237,13 @@ async function deleteCharacter(charID) {
                 characterID: charID
             })
         });
-        if (!res.ok) {
+        if (res.ok) {
+            console.log("Character deleted");
+            updateCharacterGrid();
+        }
+        else{
             throw new Error("Response not ok");
         }
-        console.log("Character deleted");
-        // updateCharacterGrid();
     }
     catch (err) {
         throw err;

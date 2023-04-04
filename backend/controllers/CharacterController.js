@@ -45,9 +45,9 @@ async function updateCharacter(req, res, next){
 
     let updatedData = {
         name: req.body.name,
-        designation: req.body.designation,
-        email: req.body.email,
-        phone: req.body.phone,
+        nickname: req.body.nickname,
+        occupation: req.body.occupation,
+        image: req.body.image,
         age: req.body.age
     }
     try{
