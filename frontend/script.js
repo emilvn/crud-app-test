@@ -4,7 +4,14 @@ window.addEventListener("load", main);
 const DataURL = "/api/character";
 
 function main() {
-    document.querySelector("#create-button").addEventListener("click", ()=> formSubmit("create"));
+    document.querySelector("#add-character-dialog-button").addEventListener("click", showCreateDialog);
+    
+    document.querySelector("#create-cancel-button").addEventListener("click", () => {
+        document.querySelector("#form-create").parentElement.close();
+    });
+    document.querySelector("#update-cancel-button").addEventListener("click", () => {
+        document.querySelector("#form-update").parentElement.close();
+    });
     updateCharacterGrid();
 }
 /* ========== Funcs to display characters ========== */
@@ -21,7 +28,9 @@ function showAllCharacters(characters) {
 function showCharacter(character) {
     const myHTML = /*html*/`
     <article>
-        <img src="${character.image}">
+        <figure>
+            <img src="${character.image}">
+        </figure>
         <h2>${character.name}</h2>
         <p>a.k.a "${character.nickname}"</p>
         <p>${character.occupation}</p>
@@ -35,6 +44,12 @@ function showCharacter(character) {
     document.querySelector("#characters").insertAdjacentHTML("beforeend", myHTML);
     document.querySelector("#characters article:last-child div button:first-child").addEventListener("click", () => deleteCharacter(character._id));
     document.querySelector("#characters article:last-child div button:last-child").addEventListener("click", () => showUpdateDialog(character));
+}
+
+function showCreateDialog() {
+    const form = document.querySelector("#form-create");
+    form.parentElement.showModal();
+    form.querySelector("#create-button").addEventListener("click", () => createFormSubmit("create"));
 }
 
 function showUpdateDialog(character){
@@ -60,22 +75,20 @@ function showUpdateDialog(character){
 }
 
 
-/* ========== user input related funcs ========== */
-async function formSubmit(mode) {
-    //mode is create or update
-    if (validate(mode)) {
+async function createFormSubmit() {
+    if (validate("create")) {
         const newChar = {};
-        newChar.name = document.querySelector(`#name-${mode}`).value;
-        newChar.nickname = document.querySelector(`#nickname-${mode}`).value;
-        newChar.occupation = document.querySelector(`#occupation-${mode}`).value;
-        newChar.image = document.querySelector(`#image-${mode}`).value;
-        newChar.age = Number(document.querySelector(`#age-${mode}`).value);
+        newChar.name = document.querySelector("#name-create").value;
+        newChar.nickname = document.querySelector("#nickname-create").value;
+        newChar.occupation = document.querySelector("#occupation-create").value;
+        newChar.image = document.querySelector("#image-create").value;
+        newChar.age = Number(document.querySelector("#age-create").value);
         if(mode === "create") await createCharacter(newChar);
-        document.querySelector(`#form-${mode}`).reset();
+        document.querySelector("#form-create").reset();
     }
 }
 function validate(mode) {
-    //mode is create or update
+    //mode is create or update//
     const charName = document.querySelector(`#name-${mode}`).value;
     const charNickname = document.querySelector(`#nickname-${mode}`).value;
     const charOccupation = document.querySelector(`#occupation-${mode}`).value;

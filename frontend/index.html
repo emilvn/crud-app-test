@@ -9,49 +9,65 @@
 </head>
 <body>
     <header>
+        <div id="add-character-dialog-button">
+            <h3>Add Character</h3>
+        </div>
         <h1>CRUD test</h1>
     </header>
-    <div class="form-grid">
-        <form id="form-create">
-            <div>
-                <label>Character Name</label><label class="value-error hidden nameValueError">Required field!</label><br>
-                <input type="text" id="name-create" name="name" placeholder="name">
-            </div>
-            <div>
-                <label>Nickname</label><label class="value-error hidden nicknameValueError">Required field!</label><br>
-                <input type="text" id="nickname-create" name="nickname" placeholder="nickname">
-            </div>
-            <div>
-                <label>Occupation</label><label class="value-error hidden occupationValueError">Required field!</label><br>
-                <input type="text" id="occupation-create" name="occupation" placeholder="occupation">
-            </div>
-            <div>
-                <label>Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
-                <input type="url" id="image-create" name="image" placeholder="Image URL">
-            </div>
-            <div>
-                <label>Age</label><label class="value-error hidden ageValueError">Required field! Must be a number larger than zero.</label><br>
-                <input type="number" id="age-create" name="age" placeholder="age">
-            </div>
-            <div id="form-create-button">
-                <input type="button" value="Submit" id="create-button"></input>
-            </div>
-        </form>
-    </div>
-    <section class="character-grid" id="characters"></section>
-    <dialog>
-        <form id="form-update">
-            <div>
-                <label>Character Name</label><label class="value-error hidden nameValueError">Required field!</label><br>
-                <input type="text" id="name-update" name="name" placeholder="name">
-            </div>
-            <div>
-                <label>Nickname</label><label class="value-error hidden nicknameValueError">Required field!</label><br>
-                <input type="text" id="nickname-update" name="nickname" placeholder="nickname">
-            </div>
-            <div>
-                <label>Occupation</label><label class="value-error hidden occupationValueError">Required field!</label><br>
-                <input type="text" id="occupation-update" name="occupation" placeholder="occupation">
+    <main>
+        <section class="character-grid" id="characters"></section>
+        <dialog>
+            <header>
+                <h1>Add Character</h1>
+                <div id="create-cancel-button">
+                    <h3>close</h3>
+                </div>
+            </header>
+            <form id="form-create">
+                <div>
+                    <label>Character Name</label><label class="value-error hidden nameValueError">Required field!</label><br>
+                    <input type="text" id="name-create" name="name" placeholder="name">
+                </div>
+                <div>
+                    <label>Nickname</label><label class="value-error hidden nicknameValueError">Required field!</label><br>
+                    <input type="text" id="nickname-create" name="nickname" placeholder="nickname">
+                </div>
+                <div>
+                    <label>Occupation</label><label class="value-error hidden occupationValueError">Required field!</label><br>
+                    <input type="text" id="occupation-create" name="occupation" placeholder="occupation">
+                </div>
+                <div>
+                    <label>Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
+                    <input type="url" id="image-create" name="image" placeholder="Image URL">
+                </div>
+                <div>
+                    <label>Age</label><label class="value-error hidden ageValueError">Required field! Must be a number larger than zero.</label><br>
+                    <input type="number" id="age-create" name="age" placeholder="age">
+                </div>
+                <div class="form-button">
+                    <input type="button" value="Submit" id="create-button"></input>
+                </div>
+            </form>
+        </dialog>
+        <dialog>
+            <header>
+                <h1>Update</h1>
+                <div id="update-cancel-button">
+                    <h3>close</h3>
+                </div>
+            </header>
+            <form id="form-update">
+                <div>
+                    <label>Character Name</label><label class="value-error hidden nameValueError">Required field!</label><br>
+                    <input type="text" id="name-update" name="name" placeholder="name">
+                </div>
+                <div>
+                    <label>Nickname</label><label class="value-error hidden nicknameValueError">Required field!</label><br>
+                    <input type="text" id="nickname-update" name="nickname" placeholder="nickname">
+                </div>
+                <div>
+                    <label>Occupation</label><label class="value-error hidden occupationValueError">Required field!</label><br>
+                    <input type="text" id="occupation-update" name="occupation" placeholder="occupation">
             </div>
             <div>
                 <label>Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
@@ -61,11 +77,12 @@
                 <label>Age</label><label class="value-error hidden ageValueError">Required field! Must be a number larger than zero.</label><br>
                 <input type="number" id="age-update" name="age" placeholder="age">
             </div>
-            <div id="form-update-button">
+            <div class="form-button">
                 <input type="button" value="Submit" id="update-button"></input>
             </div>
         </form>
     </dialog>
+    </main>
     <footer>
         <h3>by Emil V. Nielsen</h3>
     </footer>
