@@ -31,7 +31,7 @@ export async function createCharacter(character) {
                 age: character.age,
                 voicedBy: character.voicedBy,
                 gender: character.gender,
-                religon: character.religion,
+                religion: character.religion,
                 catchPhrase: character.catchPhrase,
                 hairColor: character.hairColor,
                 schoolGrade: character.schoolGrade,

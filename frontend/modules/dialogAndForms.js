@@ -6,7 +6,6 @@ import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 export async function showDetailDialog(character) {
     const dialog = document.querySelector("#detail-dialog");   
     const updatedCharacter = await getCharacter(character._id);
-    console.log(updatedCharacter);
     /* ===== character information ===== */
     for (let key in updatedCharacter) {
         if ((!updatedCharacter[key] || isUndefined(updatedCharacter[key])) && key[0] !== "_") {
@@ -55,7 +54,12 @@ function resetInfoDisplayMode() {
 /* ========== show form dialog for adding character ========== */
 export function showCreateDialog() {
     const form = document.querySelector("#form-create");
-    form.querySelector("#create-button").addEventListener("click", () => submitForm("create"));
+    const createButton = form.querySelector("#create-button");
+    
+    function submit() {
+        submitForm("create");
+    }
+    addEventListenerOnce(createButton, "click", submit);
     form.parentElement.showModal();
 }
 /* ========== show form dialog for updating character ========== */
@@ -75,12 +79,18 @@ export function showUpdateDialog(character){
     form.episodes.value = character.episodes;
     form.appearances.value = character.appearances;
     form.firstAppearance.value = character.firstAppearance;
-    form.querySelector("#update-button").addEventListener("click", ()=> submitForm("update", character._id));
+    
+    function submit() {
+        submitForm("update", character._id);
+    }
+    const updateButton = form.querySelector("#update-button");
+    addEventListenerOnce(updateButton, "click", submit);
     form.parentElement.showModal();
 }
 /* ========== submit character data to create/update ========== */
 async function submitForm(mode, characterID=null) {
     //mode is create or update//
+    console.log("submitForm")
     const form = document.querySelector(`#form-${mode}`);
     if (validate(mode)) {
         const newChar = {};
@@ -104,4 +114,12 @@ async function submitForm(mode, characterID=null) {
         form.parentElement.close();
         form.reset();
     }
+}
+/* ========== makes clickable only once ========== */
+function addEventListenerOnce(element, event, callback) {
+  function wrapper() {
+    callback();
+    element.removeEventListener(event, wrapper);
+  }
+  element.addEventListener(event, wrapper);
 }
