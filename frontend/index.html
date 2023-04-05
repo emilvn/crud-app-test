@@ -29,20 +29,56 @@
                     <input type="text" id="name-create" name="name" placeholder="name">
                 </div>
                 <div>
-                    <label>Nickname</label><label class="value-error hidden nicknameValueError">Required field!</label><br>
+                    <label>Nickname</label><br>
                     <input type="text" id="nickname-create" name="nickname" placeholder="nickname">
-                </div>
-                <div>
-                    <label>Occupation</label><label class="value-error hidden occupationValueError">Required field!</label><br>
-                    <input type="text" id="occupation-create" name="occupation" placeholder="occupation">
                 </div>
                 <div>
                     <label>Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
                     <input type="url" id="image-create" name="image" placeholder="Image URL">
                 </div>
                 <div>
-                    <label>Age</label><label class="value-error hidden ageValueError">Required field! Must be a number larger than zero.</label><br>
+                    <label>Occupation</label><br>
+                    <input type="text" id="occupation-create" name="occupation" placeholder="occupation">
+                </div>
+                <div>
+                    <label>Age</label><br>
                     <input type="number" id="age-create" name="age" placeholder="age">
+                </div>
+                <div>
+                    <label>Voiced by</label><br>
+                    <input type="text" id="voicedBy-create" name="voicedBy" placeholder="voiced by">
+                </div>
+                <div>
+                    <label>Gender</label><br>
+                    <input type="text" id="gender-create" name="gender" placeholder="gender">
+                </div>
+                <div>
+                    <label>Religion</label><br>
+                    <input type="text" id="religion-create" name="religion" placeholder="religion">
+                </div>
+                <div>
+                    <label>Catchphrase</label><br>
+                    <input type="text" id="catchPhrase-create" name="catchPhrase" placeholder="catchphrase">
+                </div>
+                <div>
+                    <label>Hair color</label><br>
+                    <input type="text" id="hairColor-create" name="hairColor" placeholder="hair color">
+                </div>
+                <div>
+                    <label>Schoolgrade</label><br>
+                    <input type="number" id="schoolGrade-create" name="schoolGrade" placeholder="schoolgrade">
+                </div>
+                <div>
+                    <label>Episodes</label><label class="value-error hidden episodesValueError">Required field!</label><br>
+                    <input type="text" id="episodes-create" name="episodes" placeholder="episodes">
+                </div>
+                <div>
+                    <label>Appearances</label><label class="value-error hidden appearancesValueError">Required field! Must be a number larger than 0</label><br>
+                    <input type="number" id="appearances-create" name="appearances" placeholder="appearances">
+                </div>
+                <div>
+                    <label>First appearance</label><br>
+                    <input type="text" id="firstAppearance-create" name="firstAppearance" placeholder="first appearance">
                 </div>
                 <div class="form-button">
                     <input type="button" value="Submit" id="create-button"></input>
@@ -62,30 +98,99 @@
                     <input type="text" id="name-update" name="name" placeholder="name">
                 </div>
                 <div>
-                    <label>Nickname</label><label class="value-error hidden nicknameValueError">Required field!</label><br>
+                    <label>Nickname</label><br>
                     <input type="text" id="nickname-update" name="nickname" placeholder="nickname">
                 </div>
                 <div>
-                    <label>Occupation</label><label class="value-error hidden occupationValueError">Required field!</label><br>
+                    <label>Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
+                    <input type="url" id="image-update" name="image" placeholder="Image URL">
+                </div>
+                <div>
+                    <label>Occupation</label><br>
                     <input type="text" id="occupation-update" name="occupation" placeholder="occupation">
-            </div>
+                </div>
+                <div>
+                    <label>Age</label><br>
+                    <input type="number" id="age-update" name="age" placeholder="age">
+                </div>
+                <div>
+                    <label>Voiced by</label><br>
+                    <input type="text" id="voicedBy-update" name="voicedBy" placeholder="voiced by">
+                </div>
+                <div>
+                    <label>Gender</label><br>
+                    <input type="text" id="gender-update" name="gender" placeholder="gender">
+                </div>
+                <div>
+                    <label>Religion</label><br>
+                    <input type="text" id="religion-update" name="religion" placeholder="religion">
+                </div>
+                <div>
+                    <label>Catchphrase</label><br>
+                    <input type="text" id="catchPhrase-update" name="catchPhrase" placeholder="catchphrase">
+                </div>
+                <div>
+                    <label>Hair color</label><br>
+                    <input type="text" id="hairColor-update" name="hairColor" placeholder="hair color">
+                </div>
+                <div>
+                    <label>Schoolgrade</label><br>
+                    <input type="number" id="schoolGrade-update" name="schoolGrade" placeholder="schoolgrade">
+                </div>
+                <div>
+                    <label>Episodes</label><label class="value-error hidden episodesValueError">Required field!</label><br>
+                    <input type="text" id="episodes-update" name="episodes" placeholder="episodes">
+                </div>
+                <div>
+                    <label>Appearances</label><label class="value-error hidden appearancesValueError">Required field! Must be a number larger than 0</label><br>
+                    <input type="number" id="appearances-update" name="appearances" placeholder="appearances">
+                </div>
+                <div>
+                    <label>First appearance</label><br>
+                    <input type="text" id="firstAppearance-update" name="firstAppearance" placeholder="first appearance">
+                </div>
+                <div class="form-button">
+                    <input type="button" value="Submit" id="update-button"></input>
+                </div>
+        </form>
+    </dialog>
+    <dialog id="detail-dialog">
+        <article id="dialog-grid">
             <div>
-                <label>Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
-                <input type="url" id="image-update" name="image" placeholder="Image URL">
+                <h2 class="character-info"><span id="dialog-name"></span></h2>
+                <p class="character-info"><span id="dialog-catchphrase"></span></p>
+                <figure class="character-info"></figure>
             </div>
-            <div>
-                <label>Age</label><label class="value-error hidden ageValueError">Required field! Must be a number larger than zero.</label><br>
-                <input type="number" id="age-update" name="age" placeholder="age">
+            <div id="dialog-info">    
+                <h3>Character info</h3>
+                <ul>
+                    <li class="character-info">Nickname: <span id="dialog-nickname"></span></li>
+                    <li class="character-info">Occupation: <span id="dialog-occupation"></span></li>
+                    <li class="character-info">Age: <span id="dialog-age"></span></li>
+                    <li class="character-info">Gender: <span id="dialog-gender"></span></li>
+                    <li class="character-info">Hair color: <span id="dialog-haircolor"></span></li>
+                    <li class="character-info">Religion: <span id="dialog-religion"></span></li>
+                    <li class="character-info">School grade: <span id="dialog-schoolgrade"></span></li>
+                    <li class="character-info">Episodes: <span id="dialog-episodes"></span></li>
+                    <li class="character-info">First appearance: <span id="dialog-firstappearance"></span></li>
+                    <li class="character-info">Appearances: <span id="dialog-appearances"></span></li>
+                </ul>
+                <p class="character-info"><span id="dialog-voicedby"></span></p>
             </div>
-            <div class="form-button">
-                <input type="button" value="Submit" id="update-button"></input>
-            </div>
+        </article>
+        <form method="dialog">
+            <button id="cancel-btn">Close</button>
         </form>
     </dialog>
     </main>
     <footer>
         <h3>by Emil V. Nielsen</h3>
     </footer>
-    <script src="script.js"></script>
+    <!-- modules -->
+    <script type="module" src="./modules/dialogAndForms.js"></script>
+    <script type="module" src="./modules/displayFunctions.js"></script>
+    <script type="module" src="./modules/validation.js"></script>
+    <!-- main script -->
+    <script type="module" src="./script.js"></script>
 </body>
 </html>

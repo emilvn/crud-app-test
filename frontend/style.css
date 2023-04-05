@@ -1,3 +1,4 @@
+/* ========== general ========== */
 :root{
     --rich-black: #11151C;
     --prussian-blue: #212D40;
@@ -16,6 +17,14 @@ body{
     background-color: var(--prussian-blue);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.hidden{
+    display: none;
+}
+.value-error{
+    color: red;
+}
+
+/* ========== header ========== */
 header{
     position: fixed;
     top: 0;
@@ -40,6 +49,8 @@ header{
 #add-character-dialog-button h3{
     margin: 0 1em 0 1em;
 }
+
+/* ========== create/update dialogs ========== */
 dialog{
     background-color: var(--charcoal);
     color: var(--jasper);
@@ -47,6 +58,7 @@ dialog{
     width: 50vw;
     padding: 2em;
     border-radius: 1em;
+    z-index: 1;
 }
 dialog header{
     display: grid;
@@ -59,6 +71,9 @@ dialog header h1{
 dialog header div{
     border-left: 1px solid black;
     cursor: pointer;
+}
+dialog form{
+    margin-top: 5em;
 }
 dialog header div:hover{
     background-color: var(--charcoal);
@@ -84,11 +99,17 @@ dialog input{
 .form-button input:hover{
     background-color: var(--prussian-blue);
 }
+
+/* ========== grid ========== */
 .character-grid{
     margin: 1em;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1em;
+}
+#dialog-grid{
+    display: grid;
+    grid-template-columns: 1fr;
 }
 @media (min-width: 600px) {
     .character-grid{
@@ -96,6 +117,9 @@ dialog input{
     }
     dialog{
         width: 40vw;
+    }
+    #dialog-grid{
+        grid-template-columns: 2fr 1fr;
     }
 }
 @media (min-width: 900px) {
@@ -127,6 +151,7 @@ dialog input{
     }
 }
 
+/* ========== characters ========== */
 #characters{
     margin-top: 6em;
 }
@@ -136,6 +161,7 @@ dialog input{
     border-radius: 1em;
     padding: 1em;
     box-shadow: 0 0 10px 0px var(--opague-jasper);
+    cursor: pointer;
 }
 .character-grid article:hover{
     box-shadow: 0 0 10px 5px var(--opague-jasper);
@@ -167,15 +193,42 @@ dialog input{
 .character-grid article button:hover{
     background-color: var(--prussian-blue);
 }
+
+/* ========== Character detail dialog ========== */
+#detail-dialog{
+    width: 75vw;
+    background-color: var(--rich-black);
+    border: 1px solid var(--jasper);
+    color: var(--jasper);
+    border-radius: 1em;
+}
+#detail-dialog img{
+    width: 100%;
+    object-fit: contain;
+    height: 300px;
+}
+#detail-dialog form{
+    text-align: center;
+}
+#detail-dialog button{
+    background-color: var(--rich-black);
+    color: var(--jasper);
+}
+#detail-dialog button{
+    background-color: var(--rich-black);
+    color: var(--jasper);
+    border-radius: 0.5em;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+#detail-dialog button:hover{
+    background-color: var(--prussian-blue);
+}
+
+/* ========== footer ========== */
 footer{
     text-align: center;
     background-color: var(--rich-black);
     color: var(--rose-taupe);
     font-size: 0.75em;
-}
-.hidden{
-    display: none;
-}
-.value-error{
-    color: red;
 }

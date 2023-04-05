@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const CharacterRoute = require("./routes/character");
+const path = require("path");
 
 /* ========== Establish connection to DB URL ========== */
 mongoose.connect("mongodb://127.0.0.1:27017", {useNewUrlParser: true, useUnifiedTopology: true})
@@ -24,6 +25,12 @@ app.use(bodyParser.json());
 
 /* ========== Set root url to frontend folder ========== */
 app.use(express.static("../frontend"));
+
+/* ========== Serve modules ========== */
+app.get('/modules/:module', (req, res) => {
+  const module = req.params.module;
+  res.sendFile(__dirname + `../frontend/modules/${module}`);
+});
 
 /* ========== PORT is specified port if set or 3000 by default ========== */
 const PORT = process.env.PORT || 3000;

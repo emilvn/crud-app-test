@@ -27,9 +27,18 @@ async function addCharacter(req, res, next){
     let character = new Character({
         name: req.body.name,
         nickname: req.body.nickname,
-        occupation: req.body.occupation,
         image: req.body.image,
-        age: req.body.age
+        occupation: req.body.occupation,
+        age: req.body.age,
+        voicedBy: req.body.voicedBy,
+        gender: req.body.gender,
+        religion: req.body.religion,
+        catchPhrase: req.body.catchPhrase,
+        hairColor: req.body.hairColor,
+        schoolGrade: req.body.schoolGrade,
+        episodes: req.body.episodes,
+        appearances: req.body.appearances,
+        firstAppearance: req.body.firstAppearance
     });
     try{
         character.save();
@@ -46,9 +55,18 @@ async function updateCharacter(req, res, next){
     let updatedData = {
         name: req.body.name,
         nickname: req.body.nickname,
-        occupation: req.body.occupation,
         image: req.body.image,
-        age: req.body.age
+        occupation: req.body.occupation,
+        age: req.body.age,
+        voicedBy: req.body.voicedBy,
+        gender: req.body.gender,
+        religion: req.body.religion,
+        catchPhrase: req.body.catchPhrase,
+        hairColor: req.body.hairColor,
+        schoolGrade: req.body.schoolGrade,
+        episodes: req.body.episodes,
+        appearances: req.body.appearances,
+        firstAppearance: req.body.firstAppearance
     }
     try{
         await Character.findByIdAndUpdate(characterID, {$set: updatedData});
