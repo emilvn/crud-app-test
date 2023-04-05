@@ -52,10 +52,30 @@ export async function createCharacter(character) {
         throw err;
     }
 }
-/* ========== READ ========== */
+/* ========== READ ALL ========== */
 export async function getData() {
     try {
         const res = await fetch(DataURL);
+        if (!res.ok) {
+            throw new Error("Response not ok");
+        }
+        const data = (await res.json()).response;
+        return data;
+    }
+    catch (err) {
+        throw err;
+    }
+}
+/* ========== READ ONE ========== */
+export async function getCharacter(charID) {
+    try {
+        const res = await fetch(DataURL + "/show/" + charID, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                characterID: charID
+            })
+        });
         if (!res.ok) {
             throw new Error("Response not ok");
         }
@@ -81,7 +101,7 @@ export async function updateCharacter(character) {
                 age: character.age,
                 voicedBy: character.voicedBy,
                 gender: character.gender,
-                religon: character.religion,
+                religion: character.religion,
                 catchPhrase: character.catchPhrase,
                 hairColor: character.hairColor,
                 schoolGrade: character.schoolGrade,

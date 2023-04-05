@@ -1,13 +1,15 @@
 "use strict";
 import { isUndefined, validate } from "./validation.js";
-import { createCharacter, updateCharacter } from "../script.js";
+import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 
 /* ========== show detailed dialog on character box click ========== */
-export function showDetailDialog(character) {
-    const dialog = document.querySelector("#detail-dialog");
+export async function showDetailDialog(character) {
+    const dialog = document.querySelector("#detail-dialog");   
+    const updatedCharacter = await getCharacter(character._id);
+    console.log(updatedCharacter);
     /* ===== character information ===== */
-    for (let key in character) {
-        if ((!character[key] || isUndefined(character[key])) && key[0] !== "_") {
+    for (let key in updatedCharacter) {
+        if ((!updatedCharacter[key] || isUndefined(updatedCharacter[key])) && key[0] !== "_") {
             dialog.querySelector(`#dialog-${key.toLowerCase()}`).parentNode.style.display = "none";
         }
         switch (key.toLowerCase()) {
@@ -15,20 +17,20 @@ export function showDetailDialog(character) {
             case "__v":
                 break;
             case "image":
-                dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${character[key]}">`;
+                dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${updatedCharacter[key]}">`;
                 break;
             case "catchphrase":
-                dialog.querySelector("#dialog-catchphrase").textContent = `"${character[key]}"`;
+                dialog.querySelector("#dialog-catchphrase").textContent = `"${updatedCharacter[key]}"`;
                 break;
         
             case "voicedby":
-                dialog.querySelector("#dialog-voicedby").textContent = `${character.name} is voiced by ${character[key]}`;
+                dialog.querySelector("#dialog-voicedby").textContent = `${updatedCharacter.name} is voiced by ${updatedCharacter[key]}`;
                 break;
             case "episodes":
-                dialog.querySelector("#dialog-episodes").textContent = (character[key].length > 40)?character[key].substring(0, 40)+"...":character[key];
+                dialog.querySelector("#dialog-episodes").textContent = (updatedCharacter[key].length > 40)?updatedCharacter[key].substring(0, 40)+"...":updatedCharacter[key];
                 break;
             default:
-                dialog.querySelector(`#dialog-${key.toLowerCase()}`).textContent = character[key];
+                dialog.querySelector(`#dialog-${key.toLowerCase()}`).textContent = updatedCharacter[key];
                 break;
         }
     }
