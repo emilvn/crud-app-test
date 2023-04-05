@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 /* ========== Set root url to frontend folder ========== */
-app.use(express.static("../frontend"));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 /* ========== Serve modules ========== */
 app.get('/modules/:module', (req, res) => {

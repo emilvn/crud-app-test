@@ -41,7 +41,7 @@ async function addCharacter(req, res, next){
         firstAppearance: req.body.firstAppearance
     });
     try{
-        character.save();
+        await character.save();
         res.json({message: "Character Added Successfully."});
     }
     catch(err){
