@@ -20,10 +20,12 @@ function showCharacter(character) {
         <figure>
             <img src="${character.image}">
         </figure>
-        <h2>${character.name}</h2>
-        <p>${(character.nickname)?"a.k.a \"" + character.nickname + "\"": ""}</p>
-        <p>${character.occupation}</p>
-        <p>${(character.age)?character.age + " years old": ""}</p>
+        <div>
+            <h2>${character.name}</h2>
+            <p>${(character.nickname)?"a.k.a \"" + character.nickname + "\"": ""}</p>
+            <p>${character.occupation}</p>
+            <p>${(character.age)?character.age + " years old": ""}</p>
+        </div>
         <div>
             <button>Delete</button>
             <button>Edit</button>
