@@ -66,6 +66,15 @@ export async function getData() {
         throw err;
     }
 }
+function prepareCharacterData(obj) {
+    const dataArr = [];
+    for (const key in obj) {
+        const character = obj[key];
+        character["id"] = key;
+        dataArr.push(character);
+    }
+    return dataArr;
+}
 /* ========== READ ONE ========== */
 export async function getCharacter(charID) {
     try {
@@ -134,13 +143,4 @@ export async function deleteCharacter(charID) {
     catch (err) {
         throw err;
     }
-}
-function prepareCharacterData(obj) {
-    const dataArr = [];
-    for (const key in obj) {
-        const character = obj[key];
-        character["id"] = key;
-        dataArr.push(character);
-    }
-    return dataArr;
 }
