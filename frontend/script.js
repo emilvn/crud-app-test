@@ -82,6 +82,7 @@ export async function getCharacter(charID) {
 }
 /* ========== UPDATE ========== */
 export async function updateCharacter(character) {
+    console.log(character);
     try {
         const res = await fetch(DataURL + "/" + character.id + ".json", {
             method: "PATCH",
@@ -122,11 +123,8 @@ export async function deleteCharacter(charID) {
     try {
         const res = await fetch(DataURL + "/" + charID + ".json", {
             method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                characterID: charID
-            })
-        });
+            headers: { "Content-Type": "application/json" }
+            });
         if (res.ok) {
             console.log("Character deleted");
             updateCharacterGrid();
@@ -146,5 +144,6 @@ function prepareCharacterData(obj) {
         character["id"] = key;
         dataArr.push(character);
     }
+    console.log(dataArr);
     return dataArr;
 }

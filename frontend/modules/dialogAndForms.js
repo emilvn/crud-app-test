@@ -83,7 +83,7 @@ export function showUpdateDialog(character){
     form.firstAppearance.value = character.firstAppearance;
     
     function submit() {
-        submitForm("update", character._id);
+        submitForm("update", character.id);
     }
     const updateButton = form.querySelector("#update-button");
     addEventListenerOnce(updateButton, "click", submit);
