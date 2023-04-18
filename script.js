@@ -1,6 +1,6 @@
 "use strict";
-import { showCreateDialog } from "../modules/dialogAndForms.js";
-import { updateCharacterGrid } from "../modules/displayFunctions.js";
+import { showCreateDialog } from "./modules/dialogAndForms.js";
+import { updateCharacterGrid } from "./modules/displayFunctions.js";
 
 window.addEventListener("load", main);
 
