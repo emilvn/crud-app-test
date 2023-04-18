@@ -4,7 +4,7 @@ import { updateCharacterGrid } from "./modules/displayFunctions.js";
 
 window.addEventListener("load", main);
 
-export const DataURL = "/api/character";
+export const DataURL = "https://forms-rest-crud-default-rtdb.europe-west1.firebasedatabase.app/characters";
 
 function main() {
     document.querySelector("#add-character-dialog-button").addEventListener("click", showCreateDialog);
@@ -20,7 +20,7 @@ function main() {
 /* ========== CREATE ========== */
 export async function createCharacter(character) {
     try {
-        const res = await fetch(DataURL + "/add", {
+        const res = await fetch(DataURL + ".json", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -55,12 +55,12 @@ export async function createCharacter(character) {
 /* ========== READ ALL ========== */
 export async function getData() {
     try {
-        const res = await fetch(DataURL);
+        const res = await fetch(DataURL + ".json");
         if (!res.ok) {
             throw new Error("Response not ok");
         }
-        const data = (await res.json()).response;
-        return data;
+        const data = await res.json();
+        return prepareCharacterData(data);
     }
     catch (err) {
         throw err;
@@ -69,17 +69,11 @@ export async function getData() {
 /* ========== READ ONE ========== */
 export async function getCharacter(charID) {
     try {
-        const res = await fetch(DataURL + "/show/" + charID, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                characterID: charID
-            })
-        });
+        const res = await fetch(DataURL + "/" + charID + ".json");
         if (!res.ok) {
             throw new Error("Response not ok");
         }
-        const data = (await res.json()).response;
+        const data = await res.json();
         return data;
     }
     catch (err) {
@@ -89,11 +83,10 @@ export async function getCharacter(charID) {
 /* ========== UPDATE ========== */
 export async function updateCharacter(character) {
     try {
-        const res = await fetch(DataURL + "/update/" + character._id, {
-            method: "PUT",
+        const res = await fetch(DataURL + "/" + character.id + ".json", {
+            method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                characterID: character.id,
                 name: character.name,
                 nickname: character.nickname,
                 image: character.image,
@@ -127,7 +120,7 @@ export async function updateCharacter(character) {
 /* ========== DELETE ========== */
 export async function deleteCharacter(charID) {
     try {
-        const res = await fetch(DataURL + "/delete/" + charID, {
+        const res = await fetch(DataURL + "/" + charID + ".json", {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -145,4 +138,13 @@ export async function deleteCharacter(charID) {
     catch (err) {
         throw err;
     }
+}
+function prepareCharacterData(obj) {
+    const dataArr = [];
+    for (const key in obj) {
+        const character = obj[key];
+        character["id"] = key;
+        dataArr.push(character);
+    }
+    return dataArr;
 }

@@ -4,10 +4,12 @@ import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 
 /* ========== show detailed dialog on character box click ========== */
 export async function showDetailDialog(character) {
-    const dialog = document.querySelector("#detail-dialog");   
-    const updatedCharacter = await getCharacter(character._id);
+    const dialog = document.querySelector("#detail-dialog"); 
+    console.log(character);
+    const updatedCharacter = await getCharacter(character.id);
+    console.log(updatedCharacter);
     /* ===== character information ===== */
-    for (let key in updatedCharacter) {
+    for (const key in updatedCharacter) {
         if ((!updatedCharacter[key] || isUndefined(updatedCharacter[key])) && key[0] !== "_") {
             dialog.querySelector(`#dialog-${key.toLowerCase()}`).parentNode.style.display = "none";
         }
