@@ -82,7 +82,6 @@ export async function getCharacter(charID) {
 }
 /* ========== UPDATE ========== */
 export async function updateCharacter(character) {
-    console.log(character);
     try {
         const res = await fetch(DataURL + "/" + character.id + ".json", {
             method: "PATCH",
@@ -106,7 +105,6 @@ export async function updateCharacter(character) {
         });
         if (res.ok) {
             console.log("Character updated.");
-            console.log(character);
             document.querySelector("#form-update").parentElement.close();
             updateCharacterGrid();
         }
@@ -144,6 +142,5 @@ function prepareCharacterData(obj) {
         character["id"] = key;
         dataArr.push(character);
     }
-    console.log(dataArr);
     return dataArr;
 }
