@@ -1,6 +1,6 @@
 "use strict";
 import { isUndefined, validate } from "./validation.js";
-import { createCharacter, getCharacter, updateCharacter } from "../script.js";
+import { createCharacter, getCharacter, updateCharacter } from "../frontend/script.js";
 
 /* ========== show detailed dialog on character box click ========== */
 export async function showDetailDialog(character) {

@@ -1,7 +1,7 @@
 "use strict";
 import { showDetailDialog, showUpdateDialog } from "./dialogAndForms.js";
-import { getData, deleteCharacter } from "../script.js";
-import { DataURL } from "../script.js";
+import { getData, deleteCharacter } from "../frontend/script.js";
+import { DataURL } from "../frontend/script.js";
 
 /* ========== Funcs to display characters ========== */
 export async function updateCharacterGrid() {
