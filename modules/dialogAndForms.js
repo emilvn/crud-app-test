@@ -7,7 +7,7 @@ export async function showDetailDialog(character) {
     const dialog = document.querySelector("#detail-dialog"); 
     const updatedCharacter = await getCharacter(character.id);
     /* All possible character keys */
-    const keys = ["age", "appearances", "catchPhrase", "episodes", "firstAppearance", "gender", "hairColor", "name", "nickname", "occupation", "schoolGrade", "religion", "voicedBy"];
+    const keys = ["age", "appearances", "catchPhrase", "episodes", "firstAppearance", "gender", "hairColor", "name", "nickname", "occupation", "schoolGrade", "religion", "voicedBy", "image"];
 
     /* ===== character information ===== */
     for (const key of keys) {
