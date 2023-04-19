@@ -20,6 +20,12 @@ export function validate(mode) {
     const urlRegEx = /^https?:\/\/.+\..+\/.+\.(png|jpg|gif)$/;
     let isValid = true;
     
+    // if (!nameValueError.classList.contains("hidden")) nameValueError.classList.add("hidden");
+    // if (!imageValueError.classList.contains("hidden")) imageValueError.classList.add("hidden");
+    // if (!episodesValueError.classList.contains("hidden")) episodesValueError.classList.add("hidden");
+    // if (!appearancesValueError.classList.contains("hidden")) appearancesValueError.classList.add("hidden");
+    // if (!firstAppearanceValueError.classList.contains("hidden")) firstAppearanceValueError.classList.add("hidden");
+
     if (!charName) {
         isValid = false;
         nameValueError.classList.remove("hidden");

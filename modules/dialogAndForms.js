@@ -91,8 +91,8 @@ export function showUpdateDialog(character){
 /* ========== submit character data to create/update ========== */
 async function submitForm(mode, characterID=null) {
     //mode is create or update//
-    console.log("submitForm")
     const form = document.querySelector(`#form-${mode}`);
+    const button = form.querySelector(`#${mode}-button`);
     if (validate(mode)) {
         const newChar = {};
         if (characterID) newChar.id = characterID;
@@ -114,6 +114,12 @@ async function submitForm(mode, characterID=null) {
         if (mode === "update") await updateCharacter(newChar);
         form.parentElement.close();
         form.reset();
+    }
+    else {
+        function submit() {
+            submitForm(mode);
+        }
+        addEventListenerOnce(button, "click", submit);
     }
 }
 /* ========== makes clickable only once ========== */
