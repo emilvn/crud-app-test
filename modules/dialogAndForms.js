@@ -6,14 +6,15 @@ import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 export async function showDetailDialog(character) {
     const dialog = document.querySelector("#detail-dialog"); 
     const updatedCharacter = await getCharacter(character.id);
+    const keys = ["age", "appearances", "catchPhrase", "episodes", "firstAppearance", "gender", "hairColor", "name", "nickname", "occupation", "schoolGrade", "religion", "voicedBy"];
+    console.log(updatedCharacter)
     /* ===== character information ===== */
-    for (const key in updatedCharacter) {
-        if ((!updatedCharacter[key] || isUndefined(updatedCharacter[key])) && key[0] !== "_") {
+    for (const key of keys) {
+        if (!updatedCharacter[key] || isUndefined(updatedCharacter[key])) {
             dialog.querySelector(`#dialog-${key.toLowerCase()}`).parentNode.style.display = "none";
         }
         switch (key.toLowerCase()) {
-            case "_id":
-            case "__v":
+            case "id":
                 break;
             case "image":
                 dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${updatedCharacter[key]}">`;

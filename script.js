@@ -93,7 +93,7 @@ export async function getCharacter(charID) {
 export async function updateCharacter(character) {
     try {
         const res = await fetch(DataURL + "/" + character.id + ".json", {
-            method: "PATCH",
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 name: character.name,
