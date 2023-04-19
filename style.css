@@ -33,6 +33,7 @@ header{
     display: grid;
     grid-template-columns: 1fr 4fr;
     color: lime;
+    z-index: 999;
 }
 #add-character-dialog-button{
     cursor: pointer;
@@ -160,6 +161,7 @@ dialog input{
     padding: 1em;
     box-shadow: 0 0 10px 0px var(--opague-lime);
     cursor: pointer;
+    position: relative;
 }
 #characters article:hover{
     box-shadow: 0 0 10px 5px var(--opague-lime);
@@ -189,6 +191,8 @@ dialog input{
     color: lime;
     border-radius: 0.5em;
     cursor: pointer;
+    width: 5em;
+    height: 2em;
 }
 #characters article button:hover{
     background-color: var(--almost-black);
