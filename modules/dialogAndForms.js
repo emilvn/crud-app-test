@@ -6,8 +6,9 @@ import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 export async function showDetailDialog(character) {
     const dialog = document.querySelector("#detail-dialog"); 
     const updatedCharacter = await getCharacter(character.id);
+    /* All possible character keys */
     const keys = ["age", "appearances", "catchPhrase", "episodes", "firstAppearance", "gender", "hairColor", "name", "nickname", "occupation", "schoolGrade", "religion", "voicedBy"];
-    console.log(updatedCharacter)
+
     /* ===== character information ===== */
     for (const key of keys) {
         if (!updatedCharacter[key] || isUndefined(updatedCharacter[key])) {
@@ -22,7 +23,6 @@ export async function showDetailDialog(character) {
             case "catchphrase":
                 dialog.querySelector("#dialog-catchphrase").textContent = `"${updatedCharacter[key]}"`;
                 break;
-        
             case "voicedby":
                 dialog.querySelector("#dialog-voicedby").textContent = `${updatedCharacter.name} is voiced by ${updatedCharacter[key]}`;
                 break;
