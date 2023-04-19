@@ -32,8 +32,8 @@ function showCharacter(character) {
         </div>
     </article>
     `;
-    document.querySelector("#characters").insertAdjacentHTML("beforeend", myHTML);
-    document.querySelector("#characters article:last-child").addEventListener("click", () => showDetailDialog(character));
-    document.querySelector("#characters article:last-child div button:first-child").addEventListener("click", (event) => { event.stopPropagation(); deleteCharacter(character.id) });
-    document.querySelector("#characters article:last-child div button:last-child").addEventListener("click", (event) => { event.stopPropagation(); showUpdateDialog(character) });
+    document.querySelector("#characters").insertAdjacentHTML("afterbegin", myHTML);
+    document.querySelector("#characters article:first-child").addEventListener("click", () => showDetailDialog(character));
+    document.querySelector("#characters article:first-child div button:first-child").addEventListener("click", (event) => { event.stopPropagation(); deleteCharacter(character.id) });
+    document.querySelector("#characters article:first-child div button:last-child").addEventListener("click", (event) => { event.stopPropagation(); showUpdateDialog(character) });
 }
