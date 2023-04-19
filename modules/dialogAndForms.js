@@ -117,7 +117,8 @@ async function submitForm(mode, characterID=null) {
     }
     else {
         function submit() {
-            submitForm(mode);
+            if (mode === "update") submitForm(mode, characterID);
+            else submitForm(mode);
         }
         addEventListenerOnce(button, "click", submit);
     }
