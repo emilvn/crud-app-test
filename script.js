@@ -45,11 +45,11 @@ export async function createCharacter(character) {
             updateCharacterGrid();
         }
         else{
-            throw new Error("Response not ok");
+            throw new Error("Response not ok at createCharacter");
         }
     }
     catch (err) {
-        throw err;
+        throw new Error(`Error at createCharacter${err}`);
     }
 }
 /* ========== READ ALL ========== */
@@ -57,13 +57,13 @@ export async function getData() {
     try {
         const res = await fetch(DataURL + ".json");
         if (!res.ok) {
-            throw new Error("Response not ok");
+            throw new Error("Response not ok at getData");
         }
         const data = await res.json();
         return prepareCharacterData(data);
     }
     catch (err) {
-        throw err;
+        throw new Error(`Error at getData ${err}`);
     }
 }
 function prepareCharacterData(obj) {
@@ -80,13 +80,13 @@ export async function getCharacter(charID) {
     try {
         const res = await fetch(DataURL + "/" + charID + ".json");
         if (!res.ok) {
-            throw new Error("Response not ok");
+            throw new Error("Response not ok at getCharacter");
         }
         const data = await res.json();
         return data;
     }
     catch (err) {
-        throw err;
+        throw new Error(`Error at getCharacter ${err}`);
     }
 }
 /* ========== UPDATE ========== */
@@ -118,11 +118,11 @@ export async function updateCharacter(character) {
             updateCharacterGrid();
         }
         else{
-            throw new Error("Response not ok");
+            throw new Error("Response not ok at updateCharacter");
         }
     }
     catch (err) {
-        throw err;
+        throw new Error(`Error at updateCharacter ${err}`);
     }
 }
 /* ========== DELETE ========== */
@@ -137,10 +137,10 @@ export async function deleteCharacter(charID) {
             updateCharacterGrid();
         }
         else{
-            throw new Error("Response not ok");
+            throw new Error("Response not ok at deleteCharacter");
         }
     }
     catch (err) {
-        throw err;
+        throw new Error(`Error at deleteCharacter ${err}`);
     }
 }
