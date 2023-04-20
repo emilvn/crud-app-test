@@ -44,8 +44,8 @@ header{
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0.75em;
-    left: 0.75em;
+    bottom: 0;
+    right: 0;
     z-index: 999;
     background-color: lime;
     color: var(--rich-black);
