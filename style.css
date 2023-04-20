@@ -44,13 +44,14 @@ header{
     justify-content: center;
     align-items: center;
     position: fixed;
-    bottom: 0;
-    left: 0;
+    top: 0.75em;
+    left: 0.75em;
     z-index: 999;
     background-color: lime;
     color: var(--rich-black);
-    height: 3em;
-    border-radius: 1em 1em 1em 0;
+    height: 2em;
+    border-radius: 0.5em;
+    font-size: 1.5em;
 }
 #add-character-dialog-button:hover{
     background-color: green;
@@ -243,14 +244,14 @@ fieldset{
     left: 50%;
 }
 #detail-dialog button{
-    background-color: var(--rich-black);
-    color: lime;
+    background-color: lime;
+    color: var(--rich-black);
     border-radius: 0.5em;
     cursor: pointer;
     font-size: 1.5em;
 }
 #detail-dialog button:hover{
-    background-color: var(--almost-black);
+    background-color: green;
 }
 
 /* ========== footer ========== */
