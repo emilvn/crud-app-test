@@ -5,9 +5,14 @@ import { DataURL } from "../script.js";
 
 /* ========== Funcs to display characters ========== */
 export async function updateCharacterGrid() {
-    const characters = await getData(DataURL);
-    document.querySelector("#characters").innerHTML = "";
-    showAllCharacters(characters);
+    try {    
+        const characters = await getData(DataURL);
+        document.querySelector("#characters").innerHTML = "";
+        showAllCharacters(characters);
+    }
+    catch (err) {
+        throw new Error(`Error at updateCharacterGrid: ${err}`)
+    }
 }
 function showAllCharacters(characters) {
     for (const character of characters) {

@@ -41,7 +41,7 @@ export async function createCharacter(character) {
             })
         });
         if (res.ok) {
-            console.log("Character added.");
+            console.log("Character added!");
             updateCharacterGrid();
         }
         else{
@@ -49,18 +49,21 @@ export async function createCharacter(character) {
         }
     }
     catch (err) {
-        throw new Error(`Error at createCharacter${err}`);
+        throw new Error(`Error at createCharacter: ${err}`);
     }
 }
 /* ========== READ ALL ========== */
 export async function getData() {
     try {
         const res = await fetch(DataURL + ".json");
-        if (!res.ok) {
+        if (res.ok) {
+            const data = await res.json();
+            console.log("Character data retrieved successfully!")
+            return prepareCharacterData(data);
+        }
+        else {
             throw new Error("Response not ok at getData");
         }
-        const data = await res.json();
-        return prepareCharacterData(data);
     }
     catch (err) {
         throw new Error(`Error at getData ${err}`);
@@ -79,14 +82,17 @@ function prepareCharacterData(obj) {
 export async function getCharacter(charID) {
     try {
         const res = await fetch(DataURL + "/" + charID + ".json");
-        if (!res.ok) {
+        if (res.ok) {
+            console.log(`Character with id: ${charID} retrieved successfully!`)
+            const data = await res.json();
+            return data;
+        }
+        else {
             throw new Error("Response not ok at getCharacter");
         }
-        const data = await res.json();
-        return data;
     }
     catch (err) {
-        throw new Error(`Error at getCharacter ${err}`);
+        throw new Error(`Error at getCharacter: ${err}`);
     }
 }
 /* ========== UPDATE ========== */
@@ -113,7 +119,7 @@ export async function updateCharacter(character) {
             })
         });
         if (res.ok) {
-            console.log("Character updated.");
+            console.log("Character updated!");
             document.querySelector("#form-update").parentElement.close();
             updateCharacterGrid();
         }
@@ -122,7 +128,7 @@ export async function updateCharacter(character) {
         }
     }
     catch (err) {
-        throw new Error(`Error at updateCharacter ${err}`);
+        throw new Error(`Error at updateCharacter: ${err}`);
     }
 }
 /* ========== DELETE ========== */
@@ -133,7 +139,7 @@ export async function deleteCharacter(charID) {
             headers: { "Content-Type": "application/json" }
             });
         if (res.ok) {
-            console.log("Character deleted");
+            console.log("Character deleted!");
             updateCharacterGrid();
         }
         else{
@@ -141,6 +147,6 @@ export async function deleteCharacter(charID) {
         }
     }
     catch (err) {
-        throw new Error(`Error at deleteCharacter ${err}`);
+        throw new Error(`Error at deleteCharacter: ${err}`);
     }
 }

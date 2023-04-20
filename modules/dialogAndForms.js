@@ -4,46 +4,49 @@ import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 
 /* ========== show detailed dialog on character box click ========== */
 export async function showDetailDialog(character) {
-    const dialog = document.querySelector("#detail-dialog"); 
-    const updatedCharacter = await getCharacter(character.id);
-    /* All possible character keys */
-    const keys = ["age", "appearances", "catchPhrase", "episodes", "firstAppearance", "gender", "hairColor", "name", "nickname", "occupation", "schoolGrade", "religion", "voicedBy", "image"];
-
-    /* ===== character information ===== */
-    for (const key of keys) {
-        if (!updatedCharacter[key] || isUndefined(updatedCharacter[key])) {
-            dialog.querySelector(`#dialog-${key.toLowerCase()}`).parentNode.style.display = "none";
+    try { 
+        const dialog = document.querySelector("#detail-dialog"); 
+        const updatedCharacter = await getCharacter(character.id);
+        /* All possible character keys */
+        const keys = ["age", "appearances", "catchPhrase", "episodes", "firstAppearance", "gender", "hairColor", "name", "nickname", "occupation", "schoolGrade", "religion", "voicedBy", "image"];
+    
+        /* ===== character information ===== */
+        for (const key of keys) {
+            if (!updatedCharacter[key] || isUndefined(updatedCharacter[key])) {
+                dialog.querySelector(`#dialog-${key.toLowerCase()}`).parentNode.style.display = "none";
+            }
+            switch (key.toLowerCase()) {
+                case "id":
+                    break;
+                case "image":
+                    dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${updatedCharacter[key]}">`;
+                    break;
+                case "catchphrase":
+                    dialog.querySelector("#dialog-catchphrase").textContent = `"${updatedCharacter[key]}"`;
+                    break;
+                case "voicedby":
+                    dialog.querySelector("#dialog-voicedby").textContent = `${updatedCharacter.name} is voiced by ${updatedCharacter[key]}`;
+                    break;
+                case "episodes":
+                    dialog.querySelector("#dialog-episodes").textContent = (updatedCharacter[key].length > 40)?updatedCharacter[key].substring(0, 40)+"...":updatedCharacter[key];
+                    break;
+                default:
+                    dialog.querySelector(`#dialog-${key.toLowerCase()}`).textContent = updatedCharacter[key];
+                    break;
+            }
         }
-        switch (key.toLowerCase()) {
-            case "id":
-                break;
-            case "image":
-                dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${updatedCharacter[key]}">`;
-                break;
-            case "catchphrase":
-                dialog.querySelector("#dialog-catchphrase").textContent = `"${updatedCharacter[key]}"`;
-                break;
-            case "voicedby":
-                dialog.querySelector("#dialog-voicedby").textContent = `${updatedCharacter.name} is voiced by ${updatedCharacter[key]}`;
-                break;
-            case "episodes":
-                dialog.querySelector("#dialog-episodes").textContent = (updatedCharacter[key].length > 40)?updatedCharacter[key].substring(0, 40)+"...":updatedCharacter[key];
-                break;
-            default:
-                dialog.querySelector(`#dialog-${key.toLowerCase()}`).textContent = updatedCharacter[key];
-                break;
-        }
+        /* ===== Show dialog ===== */
+        document.querySelector("#detail-dialog").showModal();
+        
+        /* ===== reset hidden elements on dialog close ===== */
+        dialog.querySelector("#cancel-btn").addEventListener("click", resetInfoDisplayMode);
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") resetInfoDisplayMode(); 
+        }); 
     }
-    /* ===== Show dialog ===== */
-    document.querySelector("#detail-dialog").showModal();
-
-    /* ===== reset hidden elements on dialog close ===== */
-    dialog.querySelector("#cancel-btn").addEventListener("click", resetInfoDisplayMode);
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            resetInfoDisplayMode();
-        }
-    }); 
+    catch (err) {
+        throw new Error(`Error at showDetailDialog: ${err}`);
+    }
 }
 /* ========== resets all elements with display none in detail dialog ========== */
 function resetInfoDisplayMode() {
@@ -87,9 +90,8 @@ async function submitForm(event) {
     const form = event.target;
     form.removeEventListener("submit", submitForm);
     event.preventDefault();
-    console.log(form.characterID.value);
     const newChar = {};
-    if (form.characterID.value) newChar.id = form.characterID.value;
+    if (form.characterID) newChar.id = form.characterID.value;
     newChar.name = form.name.value;
     newChar.nickname = form.nickname.value;
     newChar.image = form.image.value;
