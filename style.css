@@ -26,11 +26,15 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--rich-black);
     width: 100%;
     text-align: center;
     color: lime;
     z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--rich-black);
+    border-radius: 0 0 1em 1em;
 }
 #add-character-dialog-button{
     cursor: pointer;
@@ -46,7 +50,7 @@ header{
     background-color: lime;
     color: var(--rich-black);
     height: 3em;
-    border-radius: 0 5px 0 0;
+    border-radius: 1em 1em 1em 0;
 }
 #add-character-dialog-button:hover{
     background-color: green;
@@ -179,6 +183,8 @@ fieldset{
     box-shadow: 0 0 10px 0px var(--opague-lime);
     cursor: pointer;
     position: relative;
+    display: grid;
+    grid-template-rows: 400px 50px;
 }
 #characters article:hover{
     box-shadow: 0 0 10px 5px var(--opague-lime);

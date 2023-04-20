@@ -17,10 +17,10 @@ function showAllCharacters(characters) {
 function showCharacter(character) {
     const myHTML = /*html*/`
     <article>
-        <figure>
-            <img src="${character.image}">
-        </figure>
         <div>
+            <figure>
+                <img src="${character.image}">
+            </figure>
             <h2>${character.name}</h2>
             <p>${(character.nickname)?"a.k.a \"" + character.nickname + "\"": ""}</p>
             <p>${character.occupation}</p>
