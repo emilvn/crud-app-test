@@ -63,6 +63,7 @@ export function showCreateDialog() {
 /* ========== show form dialog for updating character ========== */
 export function showUpdateDialog(character){
     const form = document.querySelector("#form-update");
+    form.characterID.value = character.id
     form.name.value = character.name;
     form.nickname.value = character.nickname;
     form.image.value = character.image;
@@ -78,16 +79,17 @@ export function showUpdateDialog(character){
     form.appearances.value = character.appearances;
     form.firstAppearance.value = character.firstAppearance;
 
-    form.addEventListener("submit", (event) => submitForm(event, character.id));
+    form.addEventListener("submit", submitForm);
     form.parentElement.showModal();
 }
 /* ========== submit character data to create/update ========== */
-async function submitForm(event, characterID=null) {
-    event.preventDefault();
+async function submitForm(event) {
     const form = event.target;
-    
+    form.removeEventListener("submit", submitForm);
+    event.preventDefault();
+    console.log(form.characterID.value);
     const newChar = {};
-    if (characterID) newChar.id = characterID;
+    if (form.characterID.value) newChar.id = form.characterID.value;
     newChar.name = form.name.value;
     newChar.nickname = form.nickname.value;
     newChar.image = form.image.value;

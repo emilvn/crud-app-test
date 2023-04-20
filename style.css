@@ -29,20 +29,27 @@ header{
     background-color: var(--rich-black);
     width: 100%;
     text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
     color: lime;
     z-index: 999;
 }
 #add-character-dialog-button{
     cursor: pointer;
-    border-right: 1px solid black;
+    border-top: 2px solid var(--rich-black);
+    border-right: 2px solid var(--rich-black);
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background-color: lime;
+    color: var(--rich-black);
+    height: 3em;
+    border-radius: 0 5px 0 0;
 }
 #add-character-dialog-button:hover{
-    background-color: var(--charcoal);
+    background-color: green;
 }
 #add-character-dialog-button h3{
     margin: 0 1em 0 1em;
@@ -68,6 +75,10 @@ dialog header h1{
 dialog header div{
     border-left: 1px solid black;
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 dialog form{
     margin-top: 5em;
