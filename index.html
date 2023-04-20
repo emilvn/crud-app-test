@@ -25,19 +25,21 @@
                 </div>
             </header>
             <form id="form-create">
-                <div>
-                    <label for="name-create">Character Name</label><label class="value-error hidden nameValueError">Required field!</label><br>
-                    <input type="text" id="name-create" name="name" placeholder="name">
-                </div>
-                <div>
-                    <label for="nickname-create">Nickname</label><br>
-                    <input type="text" id="nickname-create" name="nickname" placeholder="nickname">
-                </div>
-                <div>
-                    <label for="image-create">Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
-                    <input type="url" id="image-create" name="image" placeholder="Image URL">
-                </div>
-                <div>
+                <fieldset>
+                    <legend>Character info</legend>
+                    <div>
+                        <label for="name-create">Character Name</label><br>
+                        <input type="text" id="name-create" name="name" placeholder="name" required>
+                    </div>
+                    <div>
+                        <label for="nickname-create">Nickname</label><br>
+                        <input type="text" id="nickname-create" name="nickname" placeholder="nickname">
+                    </div>
+                    <div>
+                        <label for="image-create">Image URL</label><br>
+                        <input type="url" id="image-create" name="image" placeholder="Image URL" required>
+                    </div>
+                    <div>
                     <label for="occupation-create">Occupation</label><br>
                     <input type="text" id="occupation-create" name="occupation" placeholder="occupation">
                 </div>
@@ -70,19 +72,21 @@
                     <input type="number" id="schoolGrade-create" name="schoolGrade" placeholder="schoolgrade">
                 </div>
                 <div>
-                    <label for="episodes-create">Episodes</label><label class="value-error hidden episodesValueError">Required field!</label><br>
-                    <input type="text" id="episodes-create" name="episodes" placeholder="episodes">
+                    <label for="episodes-create">Episodes</label><br>
+                    <input type="text" id="episodes-create" name="episodes" placeholder="episodes" required>
                 </div>
                 <div>
-                    <label for="appearances-create">Appearances</label><label class="value-error hidden appearancesValueError">Required field! Must be a number larger than 0</label><br>
-                    <input type="number" id="appearances-create" name="appearances" placeholder="appearances">
+                    <label for="appearances-create">Appearances</label><br>
+                    <input type="number" id="appearances-create" name="appearances" placeholder="appearances" required>
                 </div>
                 <div>
-                    <label for="firstAppearance-create">First appearance</label><label class="value-error hidden firstAppearanceValueError">Required field!</label><br>
-                    <input type="text" id="firstAppearance-create" name="firstAppearance" placeholder="first appearance">
+                    <label for="firstAppearance-create">First appearance</label><br>
+                    <input type="text" id="firstAppearance-create" name="firstAppearance" placeholder="first appearance" required>
                 </div>
+            </fieldset>
                 <div class="form-button">
-                    <input type="button" value="Submit" id="create-button"></input>
+                    <input type="submit" value="Submit" id="create-button"></input>
+                    <input type="reset">
                 </div>
             </form>
         </dialog>
@@ -94,26 +98,28 @@
                 </div>
             </header>
             <form id="form-update">
-                <div>
-                    <label for="name-update">Character Name</label><label class="value-error hidden nameValueError">Required field!</label><br>
-                    <input type="text" id="name-update" name="name" placeholder="name">
-                </div>
-                <div>
-                    <label for="nickname-update">Nickname</label><br>
-                    <input type="text" id="nickname-update" name="nickname" placeholder="nickname">
-                </div>
-                <div>
-                    <label for="image-update">Image URL</label><label class="value-error hidden imageValueError">Required field! Must be of this format: "http(s)://example.com/filename.(png|jpg|gif)".</label><br>
-                    <input type="url" id="image-update" name="image" placeholder="Image URL">
-                </div>
-                <div>
-                    <label for="occupation-update">Occupation</label><br>
-                    <input type="text" id="occupation-update" name="occupation" placeholder="occupation">
-                </div>
-                <div>
-                    <label for="age-update">Age</label><br>
-                    <input type="number" id="age-update" name="age" placeholder="age">
-                </div>
+                <fieldset>
+                    <legend>Character info</legend>
+                    <div>
+                        <label for="name-update">Character Name</label><br>
+                        <input type="text" id="name-update" name="name" placeholder="name" required>
+                    </div>
+                    <div>
+                        <label for="nickname-update">Nickname</label><br>
+                        <input type="text" id="nickname-update" name="nickname" placeholder="nickname">
+                    </div>
+                    <div>
+                        <label for="image-update">Image URL</label><br>
+                        <input type="url" id="image-update" name="image" placeholder="Image URL" required>
+                    </div>
+                    <div>
+                        <label for="occupation-update">Occupation</label><br>
+                        <input type="text" id="occupation-update" name="occupation" placeholder="occupation">
+                    </div>
+                    <div>
+                        <label for="age-update">Age</label><br>
+                        <input type="number" id="age-update" name="age" placeholder="age">
+                    </div>
                 <div>
                     <label for="voicedBy-update">Voiced by</label><br>
                     <input type="text" id="voicedBy-update" name="voicedBy" placeholder="voiced by">
@@ -140,18 +146,20 @@
                 </div>
                 <div>
                     <label for="episodes-update">Episodes</label><label class="value-error hidden episodesValueError">Required field!</label><br>
-                    <input type="text" id="episodes-update" name="episodes" placeholder="episodes">
+                    <input type="text" id="episodes-update" name="episodes" placeholder="episodes" required>
                 </div>
                 <div>
-                    <label for="appearances-update">Appearances</label><label class="value-error hidden appearancesValueError">Required field! Must be a number larger than 0</label><br>
-                    <input type="number" id="appearances-update" name="appearances" placeholder="appearances">
+                    <label for="appearances-update">Appearances</label><br>
+                    <input type="number" id="appearances-update" name="appearances" placeholder="appearances" required>
                 </div>
                 <div>
-                    <label for="firstAppearance-update">First appearance</label><label class="value-error hidden firstAppearanceValueError">Required field!</label><br>
-                    <input type="text" id="firstAppearance-update" name="firstAppearance" placeholder="first appearance">
+                    <label for="firstAppearance-update">First appearance</label><br>
+                    <input type="text" id="firstAppearance-update" name="firstAppearance" placeholder="first appearance" required>
                 </div>
+            </fieldset>
                 <div class="form-button">
-                    <input type="button" value="Submit" id="update-button"></input>
+                    <input type="submit" value="Submit" id="update-button"></input>
+                    <input type="reset">
                 </div>
         </form>
     </dialog>

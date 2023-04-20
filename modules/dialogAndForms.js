@@ -1,5 +1,5 @@
 "use strict";
-import { isUndefined, validate } from "./validation.js";
+import { isUndefined } from "./validation.js";
 import { createCharacter, getCharacter, updateCharacter } from "../script.js";
 
 /* ========== show detailed dialog on character box click ========== */
@@ -57,10 +57,7 @@ export function showCreateDialog() {
     const form = document.querySelector("#form-create");
     const createButton = form.querySelector("#create-button");
     
-    function submit() {
-        submitForm("create");
-    }
-    addEventListenerOnce(createButton, "click", submit);
+    form.addEventListener("submit", submitForm);
     form.parentElement.showModal();
 }
 /* ========== show form dialog for updating character ========== */
@@ -70,7 +67,7 @@ export function showUpdateDialog(character){
     form.nickname.value = character.nickname;
     form.image.value = character.image;
     form.occupation.value = character.occupation;
-    form.age.value = character.age;
+    form.age.value = character.age || "";
     form.voicedBy.value = character.voicedBy;
     form.gender.value = character.gender;
     form.religion.value = character.religion;
@@ -80,54 +77,33 @@ export function showUpdateDialog(character){
     form.episodes.value = character.episodes;
     form.appearances.value = character.appearances;
     form.firstAppearance.value = character.firstAppearance;
-    
-    function submit() {
-        submitForm("update", character.id);
-    }
-    const updateButton = form.querySelector("#update-button");
-    addEventListenerOnce(updateButton, "click", submit);
+
+    form.addEventListener("submit", (event) => submitForm(event, character.id));
     form.parentElement.showModal();
 }
 /* ========== submit character data to create/update ========== */
-async function submitForm(mode, characterID=null) {
-    //mode is create or update//
-    const form = document.querySelector(`#form-${mode}`);
-    const button = form.querySelector(`#${mode}-button`);
-    if (validate(mode)) {
-        const newChar = {};
-        if (characterID) newChar.id = characterID;
-        newChar.name = form.name.value;
-        newChar.nickname = form.nickname.value;
-        newChar.image = form.image.value;
-        newChar.occupation = form.occupation.value;
-        newChar.age = Number(form.age.value);
-        newChar.voicedBy = form.voicedBy.value;
-        newChar.gender = form.gender.value;
-        newChar.religion = form.religion.value;
-        newChar.catchPhrase = form.catchPhrase.value;
-        newChar.hairColor = form.hairColor.value;
-        newChar.schoolGrade = form.schoolGrade.value;
-        newChar.episodes = form.episodes.value;
-        newChar.appearances = Number(form.appearances.value);
-        newChar.firstAppearance = form.firstAppearance.value;
-        if (mode === "create") await createCharacter(newChar);
-        if (mode === "update") await updateCharacter(newChar);
-        form.parentElement.close();
-        form.reset();
-    }
-    else {
-        function submit() {
-            if (mode === "update") submitForm(mode, characterID);
-            else submitForm(mode);
-        }
-        addEventListenerOnce(button, "click", submit);
-    }
-}
-/* ========== makes clickable only once ========== */
-function addEventListenerOnce(element, event, callback) {
-  function wrapper() {
-    callback();
-    element.removeEventListener(event, wrapper);
-  }
-  element.addEventListener(event, wrapper);
+async function submitForm(event, characterID=null) {
+    event.preventDefault();
+    const form = event.target;
+    
+    const newChar = {};
+    if (characterID) newChar.id = characterID;
+    newChar.name = form.name.value;
+    newChar.nickname = form.nickname.value;
+    newChar.image = form.image.value;
+    newChar.occupation = form.occupation.value;
+    newChar.age = Number(form.age.value);
+    newChar.voicedBy = form.voicedBy.value;
+    newChar.gender = form.gender.value;
+    newChar.religion = form.religion.value;
+    newChar.catchPhrase = form.catchPhrase.value;
+    newChar.hairColor = form.hairColor.value;
+    newChar.schoolGrade = form.schoolGrade.value;
+    newChar.episodes = form.episodes.value;
+    newChar.appearances = Number(form.appearances.value);
+    newChar.firstAppearance = form.firstAppearance.value;
+    if (event.target.id === "form-create") await createCharacter(newChar);
+    else if (event.target.id === "form-update") await updateCharacter(newChar);
+    form.parentElement.close();
+    form.reset();
 }
