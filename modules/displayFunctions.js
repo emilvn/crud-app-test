@@ -3,7 +3,7 @@ import { showDetailDialog, showUpdateDialog } from "./dialogAndForms.js";
 import { getData, deleteCharacter } from "../script.js";
 import { DataURL } from "../script.js";
 
-/* ========== Funcs to display characters ========== */
+/* ========== Functions to display characters ========== */
 export async function updateCharacterGrid() {
     try {    
         const characters = await getData(DataURL);
@@ -24,7 +24,7 @@ function showCharacter(character) {
     <article>
         <div>
             <figure>
-                <img src="${character.image}">
+                <img src="${character.image}" alt="">
             </figure>
             <h2>${character.name}</h2>
             <p>${(character.nickname)?"a.k.a \"" + character.nickname + "\"": ""}</p>
@@ -39,6 +39,6 @@ function showCharacter(character) {
     `;
     document.querySelector("#characters").insertAdjacentHTML("afterbegin", myHTML);
     document.querySelector("#characters article:first-child").addEventListener("click", () => showDetailDialog(character));
-    document.querySelector("#characters article:first-child div button:first-child").addEventListener("click", (event) => { event.stopPropagation(); deleteCharacter(character.id) });
+    document.querySelector("#characters article:first-child div button:first-child").addEventListener("click", (event) => { event.stopPropagation(); deleteCharacter(character.id).then().catch() });
     document.querySelector("#characters article:first-child div button:last-child").addEventListener("click", (event) => { event.stopPropagation(); showUpdateDialog(character) });
 }

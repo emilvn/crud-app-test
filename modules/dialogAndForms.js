@@ -1,3 +1,5 @@
+// noinspection JSUnresolvedReference
+
 "use strict";
 import { isUndefined } from "./validation.js";
 import { createCharacter, getCharacter, updateCharacter } from "../script.js";
@@ -19,7 +21,7 @@ export async function showDetailDialog(character) {
                 case "id":
                     break;
                 case "image":
-                    dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${updatedCharacter[key]}">`;
+                    dialog.querySelector("figure").innerHTML = /*html*/`<img id="dialog-image" src="${updatedCharacter[key]}" alt="">`;
                     break;
                 case "catchphrase":
                     dialog.querySelector("#dialog-catchphrase").textContent = `"${updatedCharacter[key]}"`;
@@ -58,7 +60,6 @@ function resetInfoDisplayMode() {
 /* ========== show form dialog for adding character ========== */
 export function showCreateDialog() {
     const form = document.querySelector("#form-create");
-    const createButton = form.querySelector("#create-button");
     
     form.addEventListener("submit", submitForm);
     form.parentElement.showModal();
