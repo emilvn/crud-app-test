@@ -6,7 +6,7 @@ window.addEventListener("load", main);
 
 export const DataURL = "https://forms-rest-crud-default-rtdb.europe-west1.firebasedatabase.app/characters";
 
-function main() {
+async function main() {
     document.querySelector("#add-character-dialog-button").addEventListener("click", showCreateDialog);
     
     document.querySelector("#create-cancel-button").addEventListener("click", () => {
@@ -15,7 +15,7 @@ function main() {
     document.querySelector("#update-cancel-button").addEventListener("click", () => {
         document.querySelector("#form-update").parentElement.close();
     });
-    updateCharacterGrid();
+    await updateCharacterGrid();
 }
 /* ========== CREATE ========== */
 export async function createCharacter(character) {
@@ -42,10 +42,7 @@ export async function createCharacter(character) {
         });
         if (res.ok) {
             console.log("Character added!");
-            updateCharacterGrid();
-        }
-        else{
-            throw new Error("Response not ok at createCharacter");
+            await updateCharacterGrid();
         }
     }
     catch (err) {
@@ -60,9 +57,6 @@ export async function getData() {
             const data = await res.json();
             console.log("Character data retrieved successfully!")
             return prepareCharacterData(data);
-        }
-        else {
-            throw new Error("Response not ok at getData");
         }
     }
     catch (err) {
@@ -83,12 +77,8 @@ export async function getCharacter(charID) {
     try {
         const res = await fetch(DataURL + "/" + charID + ".json");
         if (res.ok) {
-            console.log(`Character with id: ${charID} retrieved successfully!`)
-            const data = await res.json();
-            return data;
-        }
-        else {
-            throw new Error("Response not ok at getCharacter");
+            console.log(`Character with id: ${charID} retrieved successfully!`);
+            return await res.json();
         }
     }
     catch (err) {
@@ -121,10 +111,7 @@ export async function updateCharacter(character) {
         if (res.ok) {
             console.log("Character updated!");
             document.querySelector("#form-update").parentElement.close();
-            updateCharacterGrid();
-        }
-        else{
-            throw new Error("Response not ok at updateCharacter");
+            await updateCharacterGrid();
         }
     }
     catch (err) {
@@ -140,10 +127,7 @@ export async function deleteCharacter(charID) {
             });
         if (res.ok) {
             console.log("Character deleted!");
-            updateCharacterGrid();
-        }
-        else{
-            throw new Error("Response not ok at deleteCharacter");
+            await updateCharacterGrid();
         }
     }
     catch (err) {
